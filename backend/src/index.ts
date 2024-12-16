@@ -1,12 +1,24 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import cors from 'cors';
+import { Request, Response } from 'express';
 
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, TypeScript with Node.js!');
+// Configure CORS to allow requests from frontend
+app.use(cors({
+  origin: 'http://localhost:5173', // Your Vite dev server address
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.use(express.json());
+
+// Example API endpoint
+app.get('/api/test', (req: Request, res: Response) => {
+  res.json({ message: 'Backend connected successfully!' });
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

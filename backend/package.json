@@ -20,7 +20,9 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@types/cors": "^2.8.17",
     "axios": "^1.7.9",
+    "cors": "^2.8.5",
     "express": "^4.21.2"
   }
 }
